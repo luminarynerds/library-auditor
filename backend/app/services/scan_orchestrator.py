@@ -140,18 +140,28 @@ class ScanOrchestrator:
             await self.db.commit()
 
             # Calculate compliance score
+            # Weighted penalty: each issue deducts from 100 based on severity
+            # Site-wide issues count once, not per-page
             total_pages = len(crawl_result.html_urls)
             if total_pages > 0:
+                severity_weights = {
+                    IssueSeverity.critical: 10,
+                    IssueSeverity.serious: 5,
+                    IssueSeverity.moderate: 2,
+                    IssueSeverity.minor: 1,
+                }
                 issues_result = await self.db.execute(
-                    select(Issue.url).where(
+                    select(Issue.severity).where(
                         Issue.scan_id == self.scan_id,
-                        Issue.issue_type == IssueType.html,
-                        Issue.severity.in_([IssueSeverity.critical, IssueSeverity.serious]),
-                    ).distinct()
+                    )
                 )
-                pages_with_critical = set(issues_result.scalars().all())
-                clean_pages = total_pages - len(pages_with_critical)
-                score = round((clean_pages / total_pages) * 100, 1)
+                total_penalty = 0
+                for (sev,) in issues_result.all():
+                    total_penalty += severity_weights.get(sev, 1)
+                # Scale penalty relative to number of pages scanned
+                # More pages = more potential issues, so normalize
+                max_penalty = total_pages * 20  # theoretical max if every page had 2 critical issues
+                score = max(0, round(100 - (total_penalty / max_penalty * 100), 1))
             else:
                 score = None
 

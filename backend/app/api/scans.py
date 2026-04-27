@@ -66,6 +66,20 @@ async def create_scan(
     return ScanSummary.model_validate(scan)
 
 
+@router.get("", response_model=list[ScanSummary])
+async def list_scans(
+    limit: int = 20,
+    db: AsyncSession = Depends(get_db),
+):
+    result = await db.execute(
+        select(Scan)
+        .order_by(desc(Scan.created_at))
+        .limit(limit)
+    )
+    scans = result.scalars().all()
+    return [ScanSummary.model_validate(s) for s in scans]
+
+
 @router.get("/{scan_id}", response_model=ScanSummary)
 async def get_scan(scan_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
     scan = await db.get(Scan, scan_id)

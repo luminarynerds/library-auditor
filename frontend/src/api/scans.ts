@@ -72,6 +72,12 @@ export async function createScan(data: ScanCreate): Promise<ScanSummary> {
   return resp.json();
 }
 
+export async function listScans(): Promise<ScanSummary[]> {
+  const resp = await fetch(`${API_BASE}/scans`);
+  if (!resp.ok) throw new Error("Failed to fetch scans");
+  return resp.json();
+}
+
 export async function getScan(id: string): Promise<ScanSummary> {
   const resp = await fetch(`${API_BASE}/scans/${id}`);
   if (!resp.ok) throw new Error("Failed to fetch scan");
