@@ -34,6 +34,11 @@ class AuditIssue:
     plain_title: str
     plain_description: str
     fix_suggestion: str
+    impact_statement: str
+    effort: str
+    help_url: str
+    failure_detail: str
+    element_html: str
     element_selector: str
 
 
@@ -61,7 +66,10 @@ class HTMLAuditor:
             "title": title,
             "description": f"An accessibility issue was found ({rule_id}). This may affect users with disabilities.",
             "fix": "Ask your web administrator to review and fix this issue.",
+            "impact": "This issue may prevent some patrons from using your website.",
+            "effort": "developer",
             "wcag": "",
+            "help_url": f"https://dequeuniversity.com/rules/axe/4.10/{rule_id}",
         }
 
     def _extract_wcag(self, tags: list[str]) -> str:
@@ -79,8 +87,16 @@ class HTMLAuditor:
             plain = self.get_plain_language(rule_id)
             wcag = plain.get("wcag", "") or self._extract_wcag(violation.get("tags", []))
 
+            help_url = plain.get("help_url", f"https://dequeuniversity.com/rules/axe/4.10/{rule_id}")
+
             for node in violation.get("nodes", []):
                 selector = ", ".join(node.get("target", []))
+                failure_detail = node.get("failureSummary", "")
+                element_html = node.get("html", "")
+                # Truncate long HTML snippets
+                if len(element_html) > 200:
+                    element_html = element_html[:200] + "..."
+
                 issues.append(AuditIssue(
                     url=url,
                     severity=severity,
@@ -89,6 +105,11 @@ class HTMLAuditor:
                     plain_title=plain["title"],
                     plain_description=plain["description"],
                     fix_suggestion=plain["fix"],
+                    impact_statement=plain.get("impact", ""),
+                    effort=plain.get("effort", "developer"),
+                    help_url=help_url,
+                    failure_detail=failure_detail,
+                    element_html=element_html,
                     element_selector=selector,
                 ))
         return issues

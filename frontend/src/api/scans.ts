@@ -31,6 +31,11 @@ export interface IssueOut {
   plain_title: string;
   plain_description: string;
   fix_suggestion: string;
+  impact_statement: string | null;
+  effort: string | null;
+  help_url: string | null;
+  failure_detail: string | null;
+  element_html: string | null;
   element_selector: string | null;
 }
 

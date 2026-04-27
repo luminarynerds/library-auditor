@@ -28,6 +28,13 @@ class TestHTMLAuditor:
         assert "title" in result
         assert result["title"] != ""
 
+    def test_get_plain_language_has_new_fields(self):
+        result = self.auditor.get_plain_language("image-alt")
+        assert "impact" in result
+        assert "effort" in result
+        assert "help_url" in result
+        assert result["effort"] in ("quick", "developer", "redesign")
+
     def test_process_axe_results(self):
         fake_violations = [
             {
@@ -35,7 +42,11 @@ class TestHTMLAuditor:
                 "impact": "critical",
                 "tags": ["wcag2a", "wcag111"],
                 "nodes": [
-                    {"target": ["img.logo"], "html": "<img src='logo.png'>"}
+                    {
+                        "target": ["img.logo"],
+                        "html": "<img src='logo.png'>",
+                        "failureSummary": "Fix any of the following: Element does not have an alt attribute",
+                    }
                 ],
             }
         ]
@@ -44,3 +55,8 @@ class TestHTMLAuditor:
         assert issues[0].severity == "critical"
         assert issues[0].plain_title == "Image missing description"
         assert issues[0].url == "https://example.org/"
+        assert issues[0].impact_statement != ""
+        assert issues[0].effort == "quick"
+        assert "dequeuniversity" in issues[0].help_url
+        assert issues[0].failure_detail == "Fix any of the following: Element does not have an alt attribute"
+        assert issues[0].element_html == "<img src='logo.png'>"

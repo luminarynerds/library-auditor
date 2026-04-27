@@ -85,6 +85,11 @@ class ScanOrchestrator:
                     plain_title=plain_title,
                     plain_description=issue.plain_description,
                     fix_suggestion=issue.fix_suggestion,
+                    impact_statement=issue.impact_statement,
+                    effort=issue.effort,
+                    help_url=issue.help_url,
+                    failure_detail=issue.failure_detail,
+                    element_html=issue.element_html,
                     element_selector=issue.element_selector,
                 )
                 self.db.add(db_issue)

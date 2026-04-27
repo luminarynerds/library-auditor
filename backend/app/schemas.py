@@ -38,6 +38,11 @@ class IssueOut(BaseModel):
     plain_title: str
     plain_description: str
     fix_suggestion: str
+    impact_statement: str | None
+    effort: str | None
+    help_url: str | None
+    failure_detail: str | None
+    element_html: str | None
     element_selector: str | None
 
     model_config = {"from_attributes": True}

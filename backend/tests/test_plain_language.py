@@ -20,6 +20,10 @@ class TestPlainLanguageMap:
             assert "description" in entry, f"{rule_id} missing description"
             assert "fix" in entry, f"{rule_id} missing fix"
             assert "wcag" in entry, f"{rule_id} missing wcag"
+            assert "impact" in entry, f"{rule_id} missing impact"
+            assert "effort" in entry, f"{rule_id} missing effort"
+            assert "help_url" in entry, f"{rule_id} missing help_url"
+            assert entry["effort"] in ("quick", "developer", "redesign"), f"{rule_id} invalid effort"
 
     def test_no_jargon_in_titles(self):
         jargon = ["ARIA", "DOM", "axe", "a11y", "wcag", "element"]

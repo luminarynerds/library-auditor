@@ -76,6 +76,11 @@ class Issue(Base):
     plain_title: Mapped[str] = mapped_column(String(255))
     plain_description: Mapped[str] = mapped_column(Text)
     fix_suggestion: Mapped[str] = mapped_column(Text)
+    impact_statement: Mapped[str | None] = mapped_column(Text, nullable=True)
+    effort: Mapped[str | None] = mapped_column(String(20), nullable=True)
+    help_url: Mapped[str | None] = mapped_column(String(512), nullable=True)
+    failure_detail: Mapped[str | None] = mapped_column(Text, nullable=True)
+    element_html: Mapped[str | None] = mapped_column(Text, nullable=True)
     element_selector: Mapped[str | None] = mapped_column(Text, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
 

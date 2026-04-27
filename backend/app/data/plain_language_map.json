@@ -3,216 +3,324 @@
     "title": "Image missing description",
     "description": "A screen reader cannot describe this image to someone who is blind because no text description was provided.",
     "fix": "Add a short description of the image using the 'alt' attribute in your website editor.",
-    "wcag": "1.1.1"
+    "impact": "A blind patron cannot understand what this image shows. If it's a flyer for story time, they won't know about the event.",
+    "effort": "quick",
+    "wcag": "1.1.1",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/image-alt"
   },
   "color-contrast": {
     "title": "Text is hard to read (low contrast)",
     "description": "The text color is too similar to the background color, making it difficult for people with low vision to read.",
     "fix": "Change the text or background color so there is more contrast between them.",
-    "wcag": "1.4.3"
+    "impact": "A patron with low vision, cataracts, or who is reading in bright sunlight literally cannot read this text.",
+    "effort": "quick",
+    "wcag": "1.4.3",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/color-contrast"
   },
   "label": {
     "title": "Form field has no label",
     "description": "A form field (like a search box or text input) has no label, so a screen reader user won't know what to type there.",
     "fix": "Add a visible label next to the form field that describes what information to enter.",
-    "wcag": "1.3.1"
+    "impact": "A blind patron trying to search your catalog or sign up for a library card gets stuck -- they hear 'edit text' with no clue what to type.",
+    "effort": "quick",
+    "wcag": "1.3.1",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/label"
   },
   "link-name": {
     "title": "Link has no descriptive text",
     "description": "A link on this page has no text or only says something generic like 'click here.' Screen reader users won't know where the link goes.",
     "fix": "Change the link text to describe where it goes, like 'View Summer Reading Schedule' instead of 'Click here.'",
-    "wcag": "2.4.4"
+    "impact": "A screen reader user navigating by links hears 'link, link, link' with no idea where any of them go. They have to click each one to find out.",
+    "effort": "quick",
+    "wcag": "2.4.4",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/link-name"
   },
   "html-has-lang": {
     "title": "Page language not specified",
     "description": "The page does not declare what language it is written in, which prevents screen readers from using the correct pronunciation.",
     "fix": "Ask your web administrator to add a language attribute to the page (e.g., lang='en' for English).",
-    "wcag": "3.1.1"
+    "impact": "A screen reader may try to read your English page with Spanish pronunciation rules, making every word unintelligible.",
+    "effort": "quick",
+    "wcag": "3.1.1",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang"
   },
   "document-title": {
     "title": "Page has no title",
     "description": "This page has no title, so a screen reader user and search engines won't know what it is about.",
     "fix": "Add a descriptive title to the page in your website editor.",
-    "wcag": "2.4.2"
+    "impact": "When a patron has 10 browser tabs open, this one just says 'Untitled.' They can't find your library's page.",
+    "effort": "quick",
+    "wcag": "2.4.2",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/document-title"
   },
   "heading-order": {
     "title": "Headings are out of order",
     "description": "The headings on this page skip levels (e.g., jumping from a main heading to a small sub-heading), which makes it harder for screen reader users to navigate.",
     "fix": "Reorganize headings so they go in order: main heading, then sub-heading, then sub-sub-heading.",
-    "wcag": "1.3.1"
+    "impact": "A screen reader user navigating by headings gets confused -- it's like a book where Chapter 1 is followed by Section 3.2 with no Chapter 2.",
+    "effort": "quick",
+    "wcag": "1.3.1",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/heading-order"
   },
   "list": {
     "title": "List is not properly structured",
     "description": "A list on this page is not coded as a real list, so screen readers cannot tell users how many items it contains.",
     "fix": "Use the bulleted or numbered list feature in your website editor instead of manually typing dashes or numbers.",
-    "wcag": "1.3.1"
+    "impact": "A screen reader user hearing your hours or services doesn't know there are 5 items -- they just hear a wall of text with no structure.",
+    "effort": "quick",
+    "wcag": "1.3.1",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/list"
   },
   "button-name": {
     "title": "Button has no label",
     "description": "A button on this page has no text, so a screen reader user won't know what it does.",
     "fix": "Add descriptive text to the button, like 'Search' or 'Submit.'",
-    "wcag": "4.1.2"
+    "impact": "A blind patron hears 'button' but has no idea if it will search the catalog, submit a hold, or delete their account.",
+    "effort": "quick",
+    "wcag": "4.1.2",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/button-name"
   },
   "input-image-alt": {
     "title": "Image button missing description",
     "description": "An image used as a button has no text description, so screen reader users won't know what it does.",
     "fix": "Add a description to the image button that explains its purpose.",
-    "wcag": "1.1.1"
+    "impact": "A patron using a screen reader encounters a mystery button -- they have to guess what clicking it will do.",
+    "effort": "quick",
+    "wcag": "1.1.1",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/input-image-alt"
   },
   "select-name": {
     "title": "Dropdown menu has no label",
     "description": "A dropdown menu has no label, so screen reader users won't know what options to choose from or why.",
     "fix": "Add a visible label next to the dropdown that explains what it is for.",
-    "wcag": "4.1.2"
+    "impact": "A patron hears a list of options but has no idea what they're choosing -- is it a branch location? A language? A date range?",
+    "effort": "quick",
+    "wcag": "4.1.2",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/select-name"
   },
   "frame-title": {
     "title": "Embedded content has no title",
     "description": "An embedded section (like a map or video) has no title, so screen reader users cannot identify what it contains.",
     "fix": "Add a descriptive title to the embedded content.",
-    "wcag": "2.4.1"
+    "impact": "A patron encounters a mystery box on your page -- they don't know if it's your Google Map, an event calendar, or a video.",
+    "effort": "quick",
+    "wcag": "2.4.1",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/frame-title"
   },
   "meta-viewport": {
     "title": "Page blocks zooming",
     "description": "This page prevents users from zooming in, which makes it difficult for people with low vision to read the content.",
     "fix": "Remove the zoom restriction so users can enlarge the page on their phones and tablets.",
-    "wcag": "1.4.4"
+    "impact": "A patron with low vision on their phone literally cannot make the text bigger. They have to give up or ask someone to read it for them.",
+    "effort": "quick",
+    "wcag": "1.4.4",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/meta-viewport"
   },
   "landmark-one-main": {
     "title": "Page has no main content area marked",
     "description": "The main content area of the page is not identified, making it harder for screen reader users to jump directly to the content.",
     "fix": "Ask your web administrator to wrap the main content in a 'main' landmark.",
-    "wcag": "1.3.1"
+    "impact": "A screen reader user has to wade through the entire menu and header every time instead of jumping straight to the page content.",
+    "effort": "developer",
+    "wcag": "1.3.1",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main"
   },
   "region": {
     "title": "Content outside a labeled section",
     "description": "Some content on this page is not inside a labeled section, which makes it harder for screen reader users to understand the page structure.",
     "fix": "Organize page content into clearly labeled sections.",
-    "wcag": "1.3.1"
+    "impact": "A screen reader user gets lost on the page -- content appears without context, like reading a book with no chapter titles.",
+    "effort": "developer",
+    "wcag": "1.3.1",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/region"
   },
   "bypass": {
     "title": "No way to skip to main content",
     "description": "This page has no 'skip to content' link, so keyboard and screen reader users must tab through every menu item before reaching the main content.",
     "fix": "Add a 'Skip to main content' link at the top of the page.",
-    "wcag": "2.4.1"
+    "impact": "A keyboard user must press Tab 30+ times through your menu on every single page just to reach the content they came for.",
+    "effort": "developer",
+    "wcag": "2.4.1",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/bypass"
   },
   "empty-heading": {
     "title": "Empty heading found",
     "description": "A heading on this page has no text in it. Screen readers will announce it as a heading but cannot tell the user what it is about.",
     "fix": "Either add text to the heading or remove it if it is not needed.",
-    "wcag": "1.3.1"
+    "impact": "A screen reader user hears 'heading level 2' followed by silence. They don't know what section they're in.",
+    "effort": "quick",
+    "wcag": "1.3.1",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/empty-heading"
   },
   "duplicate-id": {
     "title": "Duplicate identifier on page",
     "description": "Two or more items on this page share the same technical identifier, which can confuse screen readers and other tools.",
     "fix": "Ask your web administrator to give each item a unique identifier.",
-    "wcag": "4.1.1"
+    "impact": "Screen readers and form labels get confused about which item they're referring to -- a label might point to the wrong field.",
+    "effort": "developer",
+    "wcag": "4.1.1",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/duplicate-id"
   },
   "table-duplicate-name": {
     "title": "Table has a repeated name",
     "description": "A data table repeats its caption or summary, which can confuse screen reader users.",
     "fix": "Make sure each table has a unique, descriptive name.",
-    "wcag": "1.3.1"
+    "impact": "A screen reader announces the same table description twice, wasting the patron's time and causing confusion.",
+    "effort": "quick",
+    "wcag": "1.3.1",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/table-duplicate-name"
   },
   "td-headers-attr": {
     "title": "Table cell missing header link",
     "description": "A table cell does not reference its column or row header, so a screen reader cannot tell the user which header the data belongs to.",
     "fix": "Ask your web administrator to link each table cell to its header.",
-    "wcag": "1.3.1"
+    "impact": "A patron hearing a table of meeting room hours just hears '2pm, 5pm, closed' with no idea which room or day those times are for.",
+    "effort": "developer",
+    "wcag": "1.3.1",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/td-headers-attr"
   },
   "th-has-data-cells": {
     "title": "Table header has no data",
     "description": "A table header exists but has no associated data cells, which may indicate a layout issue.",
     "fix": "Remove unnecessary table headers or add the missing data.",
-    "wcag": "1.3.1"
+    "impact": "A screen reader announces a table column that has no data in it, confusing patrons trying to understand the information.",
+    "effort": "quick",
+    "wcag": "1.3.1",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/th-has-data-cells"
   },
   "valid-lang": {
     "title": "Invalid language code",
     "description": "Part of the page uses an invalid language code, which may cause screen readers to mispronounce the text.",
     "fix": "Use a valid language code (e.g., 'en' for English, 'es' for Spanish).",
-    "wcag": "3.1.2"
+    "impact": "The screen reader switches to the wrong language mid-page, making the text sound like gibberish.",
+    "effort": "quick",
+    "wcag": "3.1.2",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/valid-lang"
   },
   "autocomplete-valid": {
     "title": "Form field has incorrect autocomplete",
     "description": "A form field has an invalid autocomplete setting, which prevents browsers from helping users fill it in automatically.",
     "fix": "Use the correct autocomplete value for the type of information requested (e.g., 'email' for email fields).",
-    "wcag": "1.3.5"
+    "impact": "A patron with a motor disability who relies on autofill to avoid typing has to manually enter their name, address, and email every time.",
+    "effort": "quick",
+    "wcag": "1.3.5",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/autocomplete-valid"
   },
   "image-redundant-alt": {
     "title": "Image description repeats nearby text",
     "description": "An image's description is identical to the text right next to it, which forces screen reader users to hear the same information twice.",
     "fix": "Change the image description to add context that the surrounding text does not already provide, or mark it as decorative.",
-    "wcag": "1.1.1"
+    "impact": "A screen reader user hears 'Summer Reading Program, image: Summer Reading Program' -- every duplicated description wastes their time.",
+    "effort": "quick",
+    "wcag": "1.1.1",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/image-redundant-alt"
   },
   "link-in-text-block": {
     "title": "Link only distinguished by color",
     "description": "A link inside a paragraph is only identified by its color. People who are colorblind may not be able to tell it is a link.",
     "fix": "Add an underline or other visual indicator besides color to show that the text is a link.",
-    "wcag": "1.4.1"
+    "impact": "A colorblind patron reading your page has no idea that some words are clickable links -- they miss important resources.",
+    "effort": "quick",
+    "wcag": "1.4.1",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block"
   },
   "p-as-heading": {
     "title": "Bold text used instead of a heading",
     "description": "Bold text is being used to look like a heading but is not coded as one. Screen readers will not recognize it as a heading, so users cannot navigate to it.",
     "fix": "Use your website editor's heading styles instead of just making text bold.",
-    "wcag": "1.3.1"
+    "impact": "A screen reader user trying to jump to 'Hours' or 'Location' can't find it -- the bold text is invisible to heading navigation.",
+    "effort": "quick",
+    "wcag": "1.3.1",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/p-as-heading"
   },
   "aria-allowed-attr": {
     "title": "Incorrect use of accessibility markup",
     "description": "An accessibility attribute is used incorrectly on this page, which may confuse screen readers.",
     "fix": "Ask your web administrator to review and fix the accessibility markup.",
-    "wcag": "4.1.2"
+    "impact": "The screen reader gets conflicting instructions about what an item is, leading to confusing or wrong announcements.",
+    "effort": "developer",
+    "wcag": "4.1.2",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/aria-allowed-attr"
   },
   "aria-hidden-body": {
     "title": "Entire page hidden from screen readers",
     "description": "The entire page is marked as hidden from screen readers, making it completely inaccessible to blind users.",
     "fix": "Remove the 'hidden' marking from the page body immediately -- this is a critical issue.",
-    "wcag": "4.1.2"
+    "impact": "A blind patron visits your page and hears absolutely nothing. The entire page is invisible to them.",
+    "effort": "developer",
+    "wcag": "4.1.2",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/aria-hidden-body"
   },
   "aria-hidden-focus": {
     "title": "Hidden item can still receive focus",
     "description": "An item is hidden from screen readers but can still be reached by keyboard, which creates a confusing experience.",
     "fix": "Ask your web administrator to either make the item visible to screen readers or prevent it from receiving keyboard focus.",
-    "wcag": "4.1.2"
+    "impact": "A keyboard user tabs to something invisible -- they're interacting with a ghost element and have no idea what they're activating.",
+    "effort": "developer",
+    "wcag": "4.1.2",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/aria-hidden-focus"
   },
   "aria-required-attr": {
     "title": "Missing required accessibility attribute",
     "description": "An interactive item is missing a required accessibility attribute, which prevents screen readers from describing it correctly.",
     "fix": "Ask your web administrator to add the missing accessibility attribute.",
-    "wcag": "4.1.2"
+    "impact": "A screen reader cannot properly describe this interactive item, so a blind patron doesn't know how to use it.",
+    "effort": "developer",
+    "wcag": "4.1.2",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/aria-required-attr"
   },
   "aria-roles": {
     "title": "Invalid accessibility role",
     "description": "An item on this page has an accessibility role that does not exist, which may confuse screen readers.",
     "fix": "Ask your web administrator to use a valid accessibility role.",
-    "wcag": "4.1.2"
+    "impact": "The screen reader tries to announce what this item is and gets it wrong, confusing the patron.",
+    "effort": "developer",
+    "wcag": "4.1.2",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/aria-roles"
   },
   "aria-valid-attr": {
     "title": "Invalid accessibility attribute",
     "description": "An accessibility attribute on this page is misspelled or does not exist.",
     "fix": "Ask your web administrator to correct the misspelled accessibility attribute.",
-    "wcag": "4.1.2"
+    "impact": "Accessibility information is silently lost because of a typo -- the screen reader ignores what was meant to help.",
+    "effort": "developer",
+    "wcag": "4.1.2",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/aria-valid-attr"
   },
   "aria-valid-attr-value": {
     "title": "Accessibility attribute has wrong value",
     "description": "An accessibility attribute has a value that is not valid, which may confuse screen readers.",
     "fix": "Ask your web administrator to correct the attribute value.",
-    "wcag": "4.1.2"
+    "impact": "The screen reader announces something incorrect -- like saying a checkbox is 'maybe' instead of 'checked' or 'unchecked.'",
+    "effort": "developer",
+    "wcag": "4.1.2",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/aria-valid-attr-value"
   },
   "scrollable-region-focusable": {
     "title": "Scrollable area not keyboard accessible",
     "description": "A scrollable section of the page cannot be reached using the keyboard, so keyboard-only users cannot access the content inside.",
     "fix": "Make the scrollable area keyboard accessible so users can tab into it.",
-    "wcag": "2.1.1"
+    "impact": "A patron who cannot use a mouse is completely locked out of the content in this scrollable area.",
+    "effort": "developer",
+    "wcag": "2.1.1",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/scrollable-region-focusable"
   },
   "nested-interactive": {
     "title": "Interactive items incorrectly nested",
     "description": "An interactive item (like a button) is inside another interactive item (like a link), which confuses both screen readers and keyboard navigation.",
     "fix": "Separate the interactive items so they are not nested inside each other.",
-    "wcag": "4.1.2"
+    "impact": "A patron clicking a button accidentally follows a link instead, or a screen reader can't determine which action to take.",
+    "effort": "developer",
+    "wcag": "4.1.2",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/nested-interactive"
   },
   "target-size": {
     "title": "Click target too small",
     "description": "A clickable item (button or link) is too small, making it difficult for people with motor impairments to tap or click it.",
     "fix": "Make clickable items at least 24x24 pixels in size.",
-    "wcag": "2.5.8"
+    "impact": "A patron with tremors, arthritis, or who is using a phone keeps missing the button because it's too tiny to tap accurately.",
+    "effort": "quick",
+    "wcag": "2.5.8",
+    "help_url": "https://dequeuniversity.com/rules/axe/4.10/target-size"
   }
 }
