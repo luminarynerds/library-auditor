@@ -201,6 +201,18 @@ class Crawler:
             timeout=30.0,
             headers={"User-Agent": "LibraryAuditor/1.0 (+https://github.com/library-auditor)"},
         ) as client:
+            # Detect redirects on the base URL and add final domain
+            try:
+                resp = await client.get(self.base_url, timeout=15)
+                final_url = str(resp.url)
+                final_host = urlparse(final_url).hostname
+                if final_host and final_host.lower() not in self.allowed_domains:
+                    logger.info(f"Base URL redirects to {final_host}, adding to allowed domains")
+                    self.allowed_domains.add(final_host.lower())
+                    self.base_url = final_url.rstrip("/")
+            except Exception as e:
+                logger.warning(f"Could not follow base URL redirect: {e}")
+
             # Phase 1: Try sitemap first
             sitemap_urls = await self._fetch_sitemap_urls(client)
             if sitemap_urls:

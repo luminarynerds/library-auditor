@@ -2,7 +2,7 @@ import uuid
 from datetime import datetime
 from decimal import Decimal
 
-from pydantic import BaseModel, HttpUrl
+from pydantic import BaseModel
 
 
 class ScanCreate(BaseModel):
