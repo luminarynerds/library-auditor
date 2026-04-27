@@ -11,21 +11,6 @@ const SEVERITY_COLORS: Record<string, string> = {
   minor: "#888",
 };
 
-function formatSelector(selector: string | null): string {
-  if (!selector) return "";
-  // Simplify long CSS selectors to something readable
-  // e.g. ".elementor-element-50a3bab > .elementor-widget-container > .elementor-button-wrapper" -> "Button wrapper in widget"
-  // For now, show the last meaningful part
-  const parts = selector.split(" > ");
-  const last = parts[parts.length - 1];
-  // Clean up common patterns
-  return last
-    .replace(/\[.*?\]/g, "")  // remove attributes
-    .replace(/\.elementor-[a-z-]+/g, "")  // remove elementor noise
-    .trim()
-    || selector.slice(0, 50);
-}
-
 function formatUrl(url: string): { display: string; href: string | null } {
   if (url.includes("(+")) {
     // Site-wide: "https://example.com (+9 more pages)"
