@@ -49,21 +49,45 @@ class ScanOrchestrator:
             # Phase 2: HTML audit
             auditor = HTMLAuditor()
             audit_results = await auditor.audit_pages(crawl_result.html_urls)
+
+            # Deduplicate: track (rule, selector) pairs across pages
+            # If same element appears on 2+ pages, it's a shared template issue
+            seen: dict[tuple[str, str], dict] = {}  # (rule, selector) -> {issue, pages}
             for audit_result in audit_results:
                 for issue in audit_result.issues:
-                    db_issue = Issue(
-                        scan_id=self.scan_id,
-                        url=issue.url,
-                        issue_type=IssueType.html,
-                        severity=IssueSeverity(issue.severity),
-                        axe_rule_id=issue.axe_rule_id,
-                        wcag_criterion=issue.wcag_criterion,
-                        plain_title=issue.plain_title,
-                        plain_description=issue.plain_description,
-                        fix_suggestion=issue.fix_suggestion,
-                        element_selector=issue.element_selector,
-                    )
-                    self.db.add(db_issue)
+                    key = (issue.axe_rule_id or "", issue.element_selector or "")
+                    if key in seen:
+                        seen[key]["pages"].add(issue.url)
+                    else:
+                        seen[key] = {
+                            "issue": issue,
+                            "pages": {issue.url},
+                        }
+
+            for key, entry in seen.items():
+                issue = entry["issue"]
+                pages = entry["pages"]
+                if len(pages) > 1:
+                    # Site-wide issue: store once with "Site-wide" prefix
+                    plain_title = f"Site-wide: {issue.plain_title}"
+                    url = f"{scan.base_url} (+{len(pages) - 1} more pages)"
+                else:
+                    plain_title = issue.plain_title
+                    url = issue.url
+
+                db_issue = Issue(
+                    scan_id=self.scan_id,
+                    url=url,
+                    issue_type=IssueType.html,
+                    severity=IssueSeverity(issue.severity),
+                    axe_rule_id=issue.axe_rule_id,
+                    wcag_criterion=issue.wcag_criterion,
+                    plain_title=plain_title,
+                    plain_description=issue.plain_description,
+                    fix_suggestion=issue.fix_suggestion,
+                    element_selector=issue.element_selector,
+                )
+                self.db.add(db_issue)
             await self.db.commit()
 
             # Phase 3: PDF analysis
