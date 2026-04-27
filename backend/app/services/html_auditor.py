@@ -9,24 +9,19 @@ logger = logging.getLogger(__name__)
 DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
 PLAIN_LANGUAGE_PATH = os.path.join(DATA_DIR, "plain_language_map.json")
 
-AXE_INJECT_SCRIPT = """
-const script = document.createElement('script');
-script.src = 'https://cdnjs.cloudflare.com/ajax/libs/axe-core/4.10.0/axe.min.js';
-document.head.appendChild(script);
-await new Promise((resolve) => {
-    script.onload = resolve;
-    script.onerror = resolve;
-});
-"""
+AXE_CDN_URL = "https://cdnjs.cloudflare.com/ajax/libs/axe-core/4.10.0/axe.min.js"
 
 AXE_RUN_SCRIPT = """
-const results = await axe.run(document, {
-    runOnly: {
-        type: 'tag',
-        values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']
-    }
-});
-return results;
+() => {
+    return new Promise((resolve, reject) => {
+        axe.run(document, {
+            runOnly: {
+                type: 'tag',
+                values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']
+            }
+        }).then(resolve).catch(reject);
+    });
+}
 """
 
 
@@ -106,7 +101,8 @@ class HTMLAuditor:
                 browser = await p.chromium.launch(headless=True)
                 page = await browser.new_page()
                 await page.goto(url, wait_until="domcontentloaded", timeout=30000)
-                await page.evaluate(AXE_INJECT_SCRIPT)
+                await page.add_script_tag(url=AXE_CDN_URL)
+                await page.wait_for_function("typeof axe !== 'undefined'", timeout=10000)
                 results = await page.evaluate(AXE_RUN_SCRIPT)
                 await browser.close()
 
